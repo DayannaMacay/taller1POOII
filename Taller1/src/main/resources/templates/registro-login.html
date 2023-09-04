@@ -26,40 +26,47 @@
     <section>
         <center>
             <div class="container d-flex" style="color:white">
+                <!--FORMULARIO DE REGISTRO-->
                 <div class="col-lg-6" style="margin-left: -70px">
                     <h2 class="mt-4" style="color: skyblue">REGISTRO</h2>
 
-                    <form method="post" th:object="${usuarios}">
+                    <form th:action="@{/usuarios/registro-login}" method="post" th:object="${usuario}">
 
-                    <div class="mb-5 mt-4">
-                        <label>Nombre:</label>
-                        <input type="text" class="form-control" placeholder="Ingrese su nombre"
-                               th:field="*{nombre}">
-                    </div>
+                        <!--ID-->
+                        <div class="mb-3 mt-3">
+                            <label>ID:</label>
+                            <input type="number" class="form-control" placeholder="Enter ID"
+                                   th:field="*{id}" readonly="readonly">
+                        </div>
 
-                    <div class="mb-5 mt-4">
-                        <label>Apellido:</label>
-                        <input type="text" class="form-control" placeholder="Ingrese su apellido"
-                               th:field="*{apellido}">
-                    </div>
+                        <div class="mb-5 mt-4">
+                            <label>Nombre:</label>
+                            <input type="text" class="form-control" placeholder="Ingrese su nombre"
+                                   th:field="*{nombre}">
+                        </div>
 
-                    <div class="mb-5 mt-4">
-                        <label>Email:</label>
-                        <input type="email" class="form-control" placeholder="Ingrese su email"
-                               th:field="*{email}">
-                    </div>
+                        <div class="mb-5 mt-4">
+                            <label>Apellido:</label>
+                            <input type="text" class="form-control" placeholder="Ingrese su apellido"
+                                   th:field="*{apellido}">
+                        </div>
 
-                    <div class="mb-5">
-                        <label>Contraseña:</label>
-                        <input type="password" class="form-control" placeholder="Ingrese su contraseña"
-                               th:field="*{contrasenia}">
-                    </div>
+                        <div class="mb-5 mt-4">
+                            <label>Email:</label>
+                            <input type="email" class="form-control" placeholder="Ingrese su email"
+                                   th:field="*{email}">
+                        </div>
 
-                    <button type="submit" class="btn" style="background: skyblue">Enviar</button>
-
+                        <div class="mb-5">
+                            <label>Contraseña:</label>
+                            <input type="password" class="form-control" placeholder="Ingrese su contraseña"
+                                   th:field="*{contrasenia}">
+                        </div>
+                        <button type="submit" class="btn" style="background: skyblue">Enviar</button>
                     </form>
                 </div>
 
+                <!--FORMULARIO DE INICIO DE SESION-->
                 <div class="col-lg-6" style="margin-left: 140px">
                     <form action="">
                         <h2 class="mt-4" style="color: purple">INICIA SESIÓN</h2>
@@ -71,13 +78,24 @@
                             <label for="pwd" class="form-label">Contraseña:</label>
                             <input type="password" class="form-control" id="pwd" placeholder="Ingrese su contraseña" name="pswd">
                         </div>
-                        <div class="form-check mb-4" align="left">
-                            <label class="form-check-label">
-                                <input class="form-check-input mt-1" type="checkbox" name="remember"> Recuerdame
-                            </label>
+                        <div class="mb-4" align="center">
+
+                        </div>
+                        <div>
+                            <script>
+                                function solicitarContraseña() {
+                                    var contraseña = prompt("Por favor, ingresa la contraseña:");
+                                    if (contraseña === "admin") {
+                                        // Si la contraseña es correcta, redirige a la página /lista
+                                        window.location.href = "/lista";
+                                    } else {
+                                        alert("Contraseña incorrecta. Inténtalo de nuevo.");
+                                    }
+                                }
+                            </script>
+                            <a href="lista" style="color:white" onclick="solicitarContraseña()">Ver lista de usuarios (Administrador)</a>
                         </div>
                         <a href="plataforma"><button type="button" class="btn" style="background: purple">Enviar</button></a>
-
                     </form>
                     <!-- Carrusel de fotos-->
                     <div>
